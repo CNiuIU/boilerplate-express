@@ -1,10 +1,11 @@
 let express = require('express');
+let path = require('path'); 
 let app = express();
-let path = require('path');
+
 console.log("Hello World");
 
-app.get(function(req, res) {
-  
+
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
