@@ -1,28 +1,30 @@
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); // Load .env variables
 
 let express = require('express');
 let app = express();
 
 console.log("Hello World");
 
-// Serve static files from /public at the /public path
+// Serve static files if needed (optional)
 app.use('/public', express.static(__dirname + '/public'));
 
-// Serve index.html at root path (optional if you need it)
+// Root route (not part of this challenge, but commonly included)
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+  res.sendFile(__dirname + "/views/index.html");
 });
 
-// ✅ /json route changes response based on MESSAGE_STYLE
+// ✅ /json route that changes based on MESSAGE_STYLE
 app.get("/json", function(req, res) {
   let message = "Hello json";
 
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase(); // → "HELLO JSON"
+    message = message.toUpperCase();
   }
 
   res.json({ message: message });
 });
+
+module.exports = app;
 
 
 
